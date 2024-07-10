@@ -1,15 +1,19 @@
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Atendimento {
+public class Atendimento implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private Cliente cliente;
     private Servico servico;
-    private Date data;
 
-    public Atendimento(Cliente cliente, Servico servico, Date data) {
+    public Atendimento(Cliente cliente, Servico servico) {
         this.cliente = cliente;
         this.servico = servico;
-        this.data = data;
+    
     }
+
 
     public Cliente getCliente() {
         return cliente;
@@ -18,13 +22,11 @@ public class Atendimento {
     public Servico getServico() {
         return servico;
     }
-
-    public Date getData() {
-        return data;
+    public Servico setServico(Servico NovoServico) {
+    	return servico = NovoServico;
     }
-
     @Override
     public String toString() {
-        return "Atendimento: " + cliente + ", Serviço: " + servico + ", Data: " + data;
-    }
+        return "Atendimento: " + cliente + ", Serviço: " + servico;
+    } 
 }

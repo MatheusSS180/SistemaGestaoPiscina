@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +13,24 @@ public class EstoqueGestao {
         produtos.add(produto);
     }
 
-    public void atualizarProduto(String nome, int quantidade) {
+    public void removerProduto(String nome) {
+        produtos.removeIf(produto -> produto.getNome().equals(nome));
+    }
+    
+    public void atualizarProduto(String nome, int novaQuantidade) {
         for (Produto produto : produtos) {
             if (produto.getNome().equals(nome)) {
-                produto.setQuantidade(quantidade);
+                produto.setQuantidade(novaQuantidade);
+                break;
+            }
+        }
+    }
+
+    public void editarProduto(String nome, String novoNome, int novaQuantidade) {
+        for (Produto produto : produtos) {
+            if (produto.getNome().equals(nome)) {
+                produto.setNome(novoNome);
+                produto.setQuantidade(novaQuantidade);
                 break;
             }
         }
@@ -23,5 +38,14 @@ public class EstoqueGestao {
 
     public List<Produto> listarProdutos() {
         return produtos;
+    }
+
+    public void salvarProdutos(String fileName) throws IOException {
+        UtilArquivo.salvarDados(fileName, produtos);
+    }
+
+    @SuppressWarnings("unchecked")
+    public void carregarProdutos(String fileName) throws IOException, ClassNotFoundException {
+        produtos = (List<Produto>) UtilArquivo.carregarDados(fileName);
     }
 }

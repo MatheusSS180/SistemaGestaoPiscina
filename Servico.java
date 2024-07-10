@@ -1,4 +1,8 @@
-public class Servico {
+import java.io.Serializable;
+
+public class Servico implements Serializable {
+    private static final long serialVersionUID = 1L;
+    
     private String descricao;
     private double preco;
 
@@ -10,7 +14,12 @@ public class Servico {
     public String getDescricao() {
         return descricao;
     }
-
+    public double setPreco(double NovoPreco) {
+    	return preco = NovoPreco;
+    }
+    public String setDescricao(String novaDescricao) {
+    	return descricao = novaDescricao;
+    }
     public double getPreco() {
         return preco;
     }
